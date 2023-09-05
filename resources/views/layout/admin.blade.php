@@ -95,6 +95,11 @@
                     </li>
                     <li class="nav-label">Settings</li>
                     <li>
+                        <a href="/admin/category" aria-expanded="false">
+                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Category</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="/admin/product" aria-expanded="false">
                             <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Product</span>
                         </a>

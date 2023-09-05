@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ProductController extends Controller
+class PaymentController extends Controller
 {
     public function index()
     {
         $data = array(
-            'title' => 'Product Page',
-            'product' => Product::all()
+            'title' => 'Payment Page',
+            'payment' => Payment::all()
         );
 
-        return view('admin.product', $data);
+        return view('admin.payment', $data);
     }
 
     public function add(Request $request)
@@ -28,16 +28,14 @@ class ProductController extends Controller
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         $image->storeAs('public/images', $imageName);
 
-        Product::create([
+        Payment::create([
             'name' => $request->name,
             'description' => $request->description,
             'image' => $imageName,
-            'category_id' => $request->category_id,
-            'stock' => $request->stock,
-            'price' => $request->price,
+            'account_number' => $request->account_number,
         ]);
 
-        return redirect('/admin/product')->with('success', 'Data Berhasil Disimpan');
+        return redirect('/admin/payment')->with('success', 'Data Berhasil Disimpan');
     }
 
     public function update(Request $request, $id)
@@ -59,21 +57,19 @@ class ProductController extends Controller
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         $image->storeAs('public/images', $imageName);
 
-        Product::where('id', $id)->update([
+        Payment::where('id', $id)->update([
             'name' => $request->name,
             'description' => $request->description,
             'image' => $imageName,
-            'category_id' => $request->category_id,
-            'stock' => $request->stock,
-            'price' => $request->price,
+            'account_number' => $request->account_number,
         ]);
 
-        return redirect('/admin/product')->with('success', 'Data Berhasil Diubah');
+        return redirect('/admin/payment')->with('success', 'Data Berhasil Diubah');
     }
 
     public function delete($id)
     {
-        Product::where('id', $id)->delete();
-        return redirect('/admin/product')->with('success', 'Data Berhasil Dihapus');
+        Payment::where('id', $id)->delete();
+        return redirect('/admin/payment')->with('success', 'Data Berhasil Dihapus');
     }
 }

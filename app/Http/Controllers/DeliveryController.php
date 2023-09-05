@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Delivery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ProductController extends Controller
+class DeliveryController extends Controller
 {
     public function index()
     {
         $data = array(
-            'title' => 'Product Page',
-            'product' => Product::all()
+            'title' => 'Delivery Page',
+            'delivery' => Delivery::all()
         );
 
-        return view('admin.product', $data);
+        return view('admin.delivery', $data);
     }
 
     public function add(Request $request)
@@ -28,16 +28,14 @@ class ProductController extends Controller
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         $image->storeAs('public/images', $imageName);
 
-        Product::create([
+        Delivery::create([
             'name' => $request->name,
             'description' => $request->description,
             'image' => $imageName,
-            'category_id' => $request->category_id,
-            'stock' => $request->stock,
-            'price' => $request->price,
+            'shipping_cost' => $request->shipping_cost,
         ]);
 
-        return redirect('/admin/product')->with('success', 'Data Berhasil Disimpan');
+        return redirect('/admin/delivery')->with('success', 'Data Berhasil Disimpan');
     }
 
     public function update(Request $request, $id)
@@ -59,21 +57,19 @@ class ProductController extends Controller
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         $image->storeAs('public/images', $imageName);
 
-        Product::where('id', $id)->update([
+        Delivery::where('id', $id)->update([
             'name' => $request->name,
             'description' => $request->description,
             'image' => $imageName,
-            'category_id' => $request->category_id,
-            'stock' => $request->stock,
-            'price' => $request->price,
+            'shipping_cost' => $request->shipping_cost,
         ]);
 
-        return redirect('/admin/product')->with('success', 'Data Berhasil Diubah');
+        return redirect('/admin/delivery')->with('success', 'Data Berhasil Diubah');
     }
 
     public function delete($id)
     {
-        Product::where('id', $id)->delete();
-        return redirect('/admin/product')->with('success', 'Data Berhasil Dihapus');
+        Delivery::where('id', $id)->delete();
+        return redirect('/admin/delivery')->with('success', 'Data Berhasil Dihapus');
     }
 }
