@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +18,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/login', [AuthController::class, 'index']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/admin/product', [ProductController::class, 'index']);
+Route::post('/admin/product/add', [ProductController::class, 'add'])->name('product.add');
+Route::post('/admin/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
+Route::get('/admin/product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+
+Route::get('/admin/dashboard', [AdminController::class, 'index']);
+Route::get('/admin/order', [AdminController::class, 'order']);
+Route::get('/admin/payment', [AdminController::class, 'payment']);
+Route::get('/admin/delivery', [AdminController::class, 'delivery']);
+Route::get('/admin/user', [AdminController::class, 'user']);
