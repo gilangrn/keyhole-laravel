@@ -50,7 +50,8 @@
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>
-                                                    <img src="{{ asset('storage/images/' . $item->image) }}" alt="Gambar"
+                                                    <img style="object-fit: cover;"
+                                                        src="{{ asset('storage/images/' . $item->image) }}" alt="Image"
                                                         width="200" height="200">
                                                 </td>
                                                 <td>{{ $item->name }}</td>
@@ -174,8 +175,8 @@
                             <div class="form-group">
                                 <label>Image</label>
                                 <div class="form-group">
-                                    <img src="{{ asset('storage/images/' . $data->image) }}" alt="Gambar"
-                                        width="200" height="200">
+                                    <img style="object-fit: cover;" src="{{ asset('storage/images/' . $data->image) }}"
+                                        alt="Gambar" width="200" height="200">
                                 </div>
                                 <input type="file" class="form-control" name="image">
                             </div>

@@ -24,6 +24,11 @@ use App\Http\Controllers\ProductController;
 
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/shopping-cart', [HomeController::class, 'cart'])->name('cart');
+Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
+Route::get('/tracking', [HomeController::class, 'tracking'])->name('tracking');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/product-detail/{id}', [HomeController::class, 'productDetail'])->name('product.detail');
 
 Route::get('/login', [AuthController::class, 'index']);
 Route::post('/login', [AuthController::class, 'login']);

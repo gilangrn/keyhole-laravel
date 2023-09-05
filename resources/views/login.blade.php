@@ -1,69 +1,80 @@
-@extends('layout.customer')
-@section('content')
-    <section class="blog-banner-area" id="category">
-        <div class="container h-100">
-            <div class="blog-banner">
-                <div class="text-center">
-                    <h1>Login / Register</h1>
-                    <nav aria-label="breadcrumb" class="banner-breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Login/Register</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
+<!DOCTYPE html>
+<html class="h-100" lang="en">
 
-    <section class="login_box_area section-margin">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="login_box_img">
-                        <div class="hover">
-                            <h4>New to our website?</h4>
-                            <p>There are advances being made in science and technology everyday, and a good example of
-                                this is the</p>
-                            <a class="button button-account" href="register.html">Create an Account</a>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ $title }}</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/customer-assets/img/Fevicon.png">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
+    <link href="/admin-assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="h-100">
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3"
+                    stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+
+
+
+
+    <div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="form-input-content">
+                        <div class="card login-form mb-0">
+                            <div class="card-body pt-5">
+                                <a class="text-center" href="index.html">
+                                    <h4>Keyhole</h4>
+                                </a>
+
+                                <form class="mt-5 mb-5 login-input">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="Password">
+                                    </div>
+                                    <button class="btn login-form__btn submit w-100">Sign In</button>
+                                </form>
+                                <p class="mt-5 login-form__footer">Dont have account? <a href="page-register.html"
+                                        class="text-primary">Sign Up</a> now</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="login_form_inner">
-                        <h3>Log in to enter</h3>
-                        <form class="row login_form" method="POST" action="#/" id="loginForm">
-                            @csrf
-                            <div class="col-md-12 form-group">
-                                <input type="email" class="form-control" id="email" name="email"
-                                    value="{{ old('email') }}" placeholder="Email" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Email'">
-                            </div>
-                            <div class="col-md-12 form-group">
-                                <input type="password" class="form-control" id="password" name="password"
-                                    value="{{ old('password') }}" placeholder="Password" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Password'">
-                            </div>
-                            @if ($errors->any())
-                                <div>
-                                    <ul>
-                                        @foreach ($errors->all() as $item)
-                                            <li>
-                                                {{ $item }}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-                            <div class="col-md-12 form-group">
-                                <button type="submit" value="submit" class="button button-login w-100">Log
-                                    In</button>
-                                <a href="#">Forgot Password?</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
-    </section>
-@endsection
+    </div>
+
+
+
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="/admin-assets/plugins/common/common.min.js"></script>
+    <script src="/admin-assets/js/custom.min.js"></script>
+    <script src="/admin-assets/js/settings.js"></script>
+    <script src="/admin-assets/js/gleek.js"></script>
+    <script src="/admin-assets/js/styleSwitcher.js"></script>
+</body>
+
+</html>
