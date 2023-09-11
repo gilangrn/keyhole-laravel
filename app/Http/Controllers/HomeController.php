@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -55,9 +56,15 @@ class HomeController extends Controller
 
     public function productDetail($id)
     {
+        $product = DB::table('product')
+            ->join('category', 'product.category_id', '=', 'category.id')
+            ->where('product.id', $id)
+            ->get()
+            ->first();
+
         $data = array(
             'title' => 'Product Page',
-            'product' => Product::where('id', $id)->first()
+            'product' => $product
         );
 
         return view('product.detail', $data);

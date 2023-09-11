@@ -31,11 +31,11 @@
                                 height="400">>
                         </div>
                         <!-- <div class="single-prd-item">
-                                       <img class="img-fluid" src="img/category/s-p1.jpg" alt="">
-                                      </div>
-                                      <div class="single-prd-item">
-                                       <img class="img-fluid" src="img/category/s-p1.jpg" alt="">
-                                      </div> -->
+                                                           <img class="img-fluid" src="img/category/s-p1.jpg" alt="">
+                                                          </div>
+                                                          <div class="single-prd-item">
+                                                           <img class="img-fluid" src="img/category/s-p1.jpg" alt="">
+                                                          </div> -->
                     </div>
                 </div>
                 <div class="col-lg-5 offset-lg-1">
@@ -44,7 +44,7 @@
                         <h2>Rp.{{ number_format($product->price, 0) }}</h2>
                         <ul class="list">
                             <li>
-                                <span>Category</span> : {{ $product->description }}
+                                <span>Category</span> : {{ $product->name }}
                             </li>
                             <li>
                                 <span>Stock</span> : {{ $product->stock }}
