@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +13,8 @@ class ProductController extends Controller
     {
         $data = array(
             'title' => 'Product Page',
-            'product' => Product::all()
+            'product' => Product::all(),
+            'category' => Category::all(),
         );
 
         return view('admin.product', $data);

@@ -56,15 +56,10 @@ class HomeController extends Controller
 
     public function productDetail($id)
     {
-        $product = DB::table('product')
-            ->join('category', 'product.category_id', '=', 'category.id')
-            ->where('product.id', $id)
-            ->get()
-            ->first();
 
         $data = array(
             'title' => 'Product Page',
-            'product' => $product
+            'product' => Product::where('id', $id)->first()
         );
 
         return view('product.detail', $data);

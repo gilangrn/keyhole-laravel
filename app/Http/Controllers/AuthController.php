@@ -32,10 +32,19 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($infologin)) {
-            echo 'Success';
-            exit();
+            if (Auth::user()->role == 'admin') {
+                return redirect('/admin/dashboard');
+            } else {
+                return redirect('/');
+            }
         } else {
             return redirect('/login')->withErrors('Username dan password tidak sesuai')->withInput();
         }
+    }
+
+    function logout()
+    {
+        Auth::logout();
+        return redirect('');
     }
 }

@@ -28,11 +28,7 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="/admin/dashboard">
-                    <b class="logo-abbr"><img src="/admin-assets/images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="/admin-assets/images/logo-compact.png" alt=""></span>
-                    <span class="brand-title">
-                        <img src="/admin-assets/images/logo-text.png" alt="">
-                    </span>
+                    <h2 class="card-title text-white">{{ Auth::user()->name }}</h2>
                 </a>
             </div>
         </div>
@@ -69,7 +65,7 @@
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
                                     <ul>
-                                        <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a>
+                                        <li><a href="/logout"><i class="icon-key"></i> <span>Logout</span></a>
                                         </li>
                                     </ul>
                                 </div>

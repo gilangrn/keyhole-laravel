@@ -64,3 +64,30 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+# How To Use
+
+> Regenerate folder vendor
+
+```
+composer update
+```
+
+> Untuk create table di db
+
+```
+php artisan migrate
+```
+
+> Untuk akses folder storage image
+
+```
+php artisan storage:link
+```
+
+> Untuk run project
+
+```
+php artisan serve
+```

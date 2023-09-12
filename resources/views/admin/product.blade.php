@@ -107,9 +107,12 @@
                             <input type="text" class="form-control" name="description" placeholder="Deskripsi" required>
                         </div>
                         <div class="form-group">
-                            <label>Kategori Id</label>
-                            <input type="text" class="form-control" name="category_id" placeholder="Kategori Id"
-                                required>
+                            <label>Kategori</label>
+                            <select class="form-control" id="category_id" name="category_id" required>
+                                @foreach ($category as $cat)
+                                    <option value="{{$cat->id}}">{{ $cat->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Stok</label>
@@ -158,9 +161,12 @@
                                     name="description" placeholder="Deskripsi" required>
                             </div>
                             <div class="form-group">
-                                <label>Kategori Id</label>
-                                <input type="text" value="{{ $data->category_id }}" class="form-control"
-                                    name="category_id" placeholder="Kategori Id" required>
+                                <label>Kategori</label>
+                                <select class="form-control" id="category_id" required>
+                                    @foreach ($category as $cat)
+                                        <option value="{{$cat->id}}">{{ $cat->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Stok</label>

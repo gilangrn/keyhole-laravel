@@ -87,7 +87,7 @@
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                     </button>
                 </div>
-                <form method="POST" action="{{ route('category.add') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('user.add') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -96,15 +96,20 @@
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="text" class="form-control" name="email" placeholder="Email" required>
+                            <input type="text" class="form-control" name="email" value="{{ old('email') }}"
+                                placeholder="Email" required>
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="text" class="form-control" name="password" placeholder="Password" required>
+                            <input type="text" class="form-control" name="password" value="{{ old('password') }}"
+                                placeholder="Password" required>
                         </div>
                         <div class="form-group">
                             <label>Role</label>
-                            <input type="text" class="form-control" name="role" placeholder="Role" required>
+                            <select class="form-control" id="role" name="role" required>
+                                <option value="admin">Admin</option>
+                                <option value="customer">Customer</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -126,7 +131,7 @@
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
-                    <form method="POST" action="{{ route('category.update', $data->id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('user.update', $data->id) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">
@@ -170,7 +175,7 @@
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
-                    <form method="GET" action="{{ route('category.delete', $data->id) }}">
+                    <form method="GET" action="{{ route('user.delete', $data->id) }}">
                         <div class="modal-body">
                             <div class="form-group">
                                 <h5>Apakah anda ingin menghapus data ini?</h5>
