@@ -50,7 +50,13 @@
                         <ul class="nav-shop">
                             <li class="nav-item"><button><i class="ti-search"></i></button></li>
                             <li class="nav-item"><a href="{{ route('cart') }}"><i class="ti-shopping-cart"></i></a></li>
-                            <li class="nav-item"><a class="button button-header" href="{{ route('register') }}">Register</a></li>
+                            @if (Auth::check())
+                                <li class="nav-item"><a class="button button-header"
+                                        href="/logout">Logout</a></li>
+                            @else
+                                <li class="nav-item"><a class="button button-header"
+                                        href="{{ route('login') }}">Login</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>

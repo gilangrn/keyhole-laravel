@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -77,5 +79,44 @@ class ProductController extends Controller
     {
         Product::where('id', $id)->delete();
         return redirect('/admin/product')->with('success', 'Data Berhasil Dihapus');
+    }
+
+    public function addToCart($id)
+    {
+        $product = Product::find($id);
+        if(!$product) {
+            abort(404);
+        }
+        $cart = session()->get('cart');
+        // if cart is empty then this the first product
+        if(!$cart) {
+            $cart = [
+                    $id => [
+                        "id" => $product->id,
+                        "name" => $product->name,
+                        "qty" => 1,
+                        "amount" => $product->price,
+                        "image" => $product->image
+                    ]
+            ];
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+        // if cart not empty then check if this product exist then increment quantity
+        if(isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+        // if item not exist in cart then add to cart with quantity = 1
+        $cart[$id] = [
+            "id" => $product->id,
+            "name" => $product->name,
+            "qty" => 1,
+            "amount" => $product->price,
+            "image" => $product->image
+        ];
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 }

@@ -58,7 +58,7 @@
                             <button
                                 onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
                                 class="reduced items-count" type="button"><i class="ti-angle-right"></i></button>
-                            <a class="button primary-btn" href="#">Add to Cart</a>
+                            <a class="button primary-btn" href="{{ url('add-to-cart/'.$product->id) }}">Add to Cart</a>
                         </div>
                     </div>
                 </div>

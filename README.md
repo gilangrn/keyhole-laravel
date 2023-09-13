@@ -91,3 +91,9 @@ php artisan storage:link
 ```
 php artisan serve
 ```
+
+> Untuk membuat model
+
+```
+php artisan make:model Cart
+```
