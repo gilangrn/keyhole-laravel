@@ -70,6 +70,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/shopping-cart', [HomeController::class, 'cart'])->name('cart')->middleware('accessLevel:customer');
     Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->middleware('accessLevel:customer');
+    Route::get('checkout', [ProductController::class, 'checkout'])->middleware('accessLevel:customer');
 });
 
 Route::get('/', [HomeController::class, 'index']);

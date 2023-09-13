@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -118,5 +119,34 @@ class ProductController extends Controller
         ];
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+
+    public function checkout() {
+
+        $orderId = Order::insertGetId([
+            'order_date' => 0,
+            'payment_method_id' => 0,
+            'delivery_type_id' => 0,
+            'user_id' => Auth::user()->id,
+            'user_address_id' => 0,
+            'total_product_price' => 0,
+            'delivery_price' => 0,
+            'service_price' => 0,
+            'total_amount' => 0,
+            'status' => 1,
+        ]);
+
+        foreach (session('cart') as $id => $details) {
+            OrderDetail::create([
+                'order_id' => $orderId,
+                'product_id' => $details['id'],
+                'qty' => $details['qty'],
+                'amount' => $details['amount'],
+            ]);
+        }
+
+        session()->forget('cart');
+
+        return redirect('/')->with('success', 'Data Berhasil Ditambah');
     }
 }

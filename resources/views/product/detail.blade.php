@@ -18,6 +18,11 @@
     </section>
     <!-- ================ end banner area ================= -->
 
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success')}}
+        </div>
+    @endif
 
     <!--================Single Product Area =================-->
     <div class="product_image_area">
