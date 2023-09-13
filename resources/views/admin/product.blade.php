@@ -25,6 +25,14 @@
                                     Tambah Data
                                 </button>
                             </div>
+
+                            <br/>
+
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success')}}
+                                </div>
+                            @endif
                         </div>
                         <div class="card-body">
 
@@ -164,7 +172,7 @@
                                 <label>Kategori</label>
                                 <select class="form-control" id="category_id" required>
                                     @foreach ($category as $cat)
-                                        <option value="{{$cat->id}}">{{ $cat->name}}</option>
+                                        <option <?php if($data->category_id == $cat->id) echo "selected" ?> value="{{$cat->id}}">{{ $cat->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

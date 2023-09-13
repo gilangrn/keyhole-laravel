@@ -29,6 +29,8 @@ use App\Http\Controllers\UserController;
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'postRegister']);
 });
 
 Route::get('/home', function () {
@@ -65,10 +67,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/user/add', [UserController::class, 'add'])->name('user.add')->middleware('accessLevel:admin');
     Route::post('/admin/user/update/{id}', [UserController::class, 'update'])->name('user.update')->middleware('accessLevel:admin');
     Route::get('/admin/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete')->middleware('accessLevel:admin');
+
+    Route::get('/shopping-cart', [HomeController::class, 'cart'])->name('cart')->middleware('accessLevel:customer');
 });
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/shopping-cart', [HomeController::class, 'cart'])->name('cart');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/tracking', [HomeController::class, 'tracking'])->name('tracking');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');

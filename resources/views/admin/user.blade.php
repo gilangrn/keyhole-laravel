@@ -25,6 +25,14 @@
                                     Tambah Data
                                 </button>
                             </div>
+
+                            <br/>
+
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success')}}
+                                </div>
+                            @endif
                         </div>
                         <div class="card-body">
 

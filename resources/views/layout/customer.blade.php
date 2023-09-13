@@ -38,9 +38,6 @@
                                 <a class="nav-link" href="/">Home</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="{{ route('cart') }}">Shopping Cart</a>
-                            </li>
-                            <li class="nav-item ">
                                 <a class="nav-link" href="{{ route('blog') }}">Blog</a>
                             </li>
                             <li class="nav-item ">
@@ -52,9 +49,8 @@
 
                         <ul class="nav-shop">
                             <li class="nav-item"><button><i class="ti-search"></i></button></li>
-                            <li class="nav-item"><button><i class="ti-shopping-cart"></i><span
-                                        class="nav-shop__circle">3</span></button> </li>
-                            <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
+                            <li class="nav-item"><a href="{{ route('cart') }}"><i class="ti-shopping-cart"></i></a></li>
+                            <li class="nav-item"><a class="button button-header" href="{{ route('register') }}">Register</a></li>
                         </ul>
                     </div>
                 </div>
