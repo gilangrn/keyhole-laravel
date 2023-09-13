@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\PaymentController;
@@ -42,6 +43,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
 
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware('accessLevel:admin');
+
+    Route::get('/admin/order', [OrderController::class, 'index'])->middleware('accessLevel:admin');
+    Route::post('/admin/order/add', [OrderController::class, 'add'])->name('category.add')->middleware('accessLevel:admin');
+    Route::post('/admin/order/update/{id}', [OrderController::class, 'update'])->name('category.update')->middleware('accessLevel:admin');
+    Route::get('/admin/order/delete/{id}', [OrderController::class, 'delete'])->name('category.delete')->middleware('accessLevel:admin');
 
     Route::get('/admin/category', [CategoryController::class, 'index'])->middleware('accessLevel:admin');
     Route::post('/admin/category/add', [CategoryController::class, 'add'])->name('category.add')->middleware('accessLevel:admin');
