@@ -41,7 +41,7 @@
                                 <a class="nav-link" href="{{ route('blog') }}">Blog</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="{{ route('tracking') }}">Tracking</a>
+                                <a class="nav-link" href="{{ route('order') }}">Order</a>
                             </li>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>

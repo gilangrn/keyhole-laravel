@@ -91,5 +91,5 @@ Route::get('/product-detail/{id}', [HomeController::class, 'productDetail'])->na
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/blog-detail/{id}', [HomeController::class, 'blogDetail'])->name('blog.detail');
 
-Route::get('/tracking', [HomeController::class, 'tracking'])->name('tracking');
+Route::get('/order', [HomeController::class, 'order'])->name('order');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');

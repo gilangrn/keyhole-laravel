@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -14,7 +16,7 @@ class HomeController extends Controller
         $data = array(
             'title' => 'Home Page',
             'product' => Product::all(),
-            'news' => News::all()
+            'news' => News::all(),
         );
 
         return view('home', $data);
@@ -50,13 +52,16 @@ class HomeController extends Controller
         return view('home.blogDetail', $data);
     }
 
-    public function tracking()
+    public function order()
     {
+        $userId = Auth::user()->id;
+
         $data = array(
-            'title' => 'Tracking Page'
+            'title' => 'Order Page',
+            'order' => Order::where('user_id', $userId)->get()
         );
 
-        return view('home.tracking', $data);
+        return view('home.order', $data);
     }
 
     public function contact()
@@ -76,6 +81,6 @@ class HomeController extends Controller
             'product' => Product::where('id', $id)->first()
         );
 
-        return view('home.detail', $data);
+        return view('home.productDetail', $data);
     }
 }

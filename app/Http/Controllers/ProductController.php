@@ -8,7 +8,9 @@ use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -85,26 +87,26 @@ class ProductController extends Controller
     public function addToCart($id)
     {
         $product = Product::find($id);
-        if(!$product) {
+        if (!$product) {
             abort(404);
         }
         $cart = session()->get('cart');
         // if cart is empty then this the first product
-        if(!$cart) {
+        if (!$cart) {
             $cart = [
-                    $id => [
-                        "id" => $product->id,
-                        "name" => $product->name,
-                        "qty" => 1,
-                        "amount" => $product->price,
-                        "image" => $product->image
-                    ]
+                $id => [
+                    "id" => $product->id,
+                    "name" => $product->name,
+                    "qty" => 1,
+                    "amount" => $product->price,
+                    "image" => $product->image
+                ]
             ];
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Product added to cart successfully!');
         }
         // if cart not empty then check if this product exist then increment quantity
-        if(isset($cart[$id])) {
+        if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Product added to cart successfully!');
@@ -121,18 +123,27 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
-    public function checkout() {
+    public function checkout()
+    {
+        $currentTime = Carbon::now();
+        $formattedTime = date('YmdHis', strtotime($currentTime));
+        $total = 0;
+
+        foreach (session('cart') as $id => $details) {
+            $total += $details['amount'] * $details['qty'];
+        }
 
         $orderId = Order::insertGetId([
-            'order_date' => 0,
-            'payment_method_id' => 0,
-            'delivery_type_id' => 0,
+            'order_id' => '#ORDER'.str_pad($formattedTime, 12, "0", STR_PAD_LEFT),
+            'order_date' => $currentTime,
+            'payment_method_id' => 1,
+            'delivery_type_id' => 1,
             'user_id' => Auth::user()->id,
-            'user_address_id' => 0,
-            'total_product_price' => 0,
-            'delivery_price' => 0,
-            'service_price' => 0,
-            'total_amount' => 0,
+            'user_address_id' => 1,
+            'total_product_price' => 1,
+            'delivery_price' => 1,
+            'service_price' => 1,
+            'total_amount' => $total,
             'status' => 1,
         ]);
 
@@ -147,6 +158,6 @@ class ProductController extends Controller
 
         session()->forget('cart');
 
-        return redirect('/')->with('success', 'Data Berhasil Ditambah');
+        return redirect('/order')->with('success', 'Data Berhasil Ditambah');
     }
 }

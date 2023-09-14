@@ -42,7 +42,9 @@
                                         <td>
                                             <div class="media">
                                                 <div class="d-flex">
-                                                    <img src="img/cart/cart1.png" alt="">
+                                                    <img style="object-fit: cover;"
+                                                        src="{{ asset('storage/images/' . $details['image']) }}" alt="Image"
+                                                        width="100" height="100">
                                                 </div>
                                                 <div class="media-body">
                                                     <p>{{ $details['name'] }}</p>
