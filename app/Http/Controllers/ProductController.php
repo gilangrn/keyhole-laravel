@@ -120,7 +120,7 @@ class ProductController extends Controller
             "image" => $product->image
         ];
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        return redirect('/shopping-cart')->with('success', 'Data Berhasil Ditambah');
     }
 
     public function checkout()
