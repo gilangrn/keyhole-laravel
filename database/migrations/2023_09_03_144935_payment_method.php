@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('payment_method', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->string('account_number')->nullable();
             $table->timestamps();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +13,8 @@ class HomeController extends Controller
     {
         $data = array(
             'title' => 'Home Page',
-            'product' => Product::all()
+            'product' => Product::all(),
+            'news' => News::all()
         );
 
         return view('home', $data);
@@ -24,16 +26,28 @@ class HomeController extends Controller
             'title' => 'Cart Page'
         );
 
-        return view('cart.cart', $data);
+        return view('home.cart', $data);
     }
 
     public function blog()
     {
         $data = array(
-            'title' => 'Blog Page'
+            'title' => 'Blog Page',
+            'news' => News::all()
         );
 
-        return view('blog.blog', $data);
+        return view('home.blog', $data);
+    }
+
+    public function blogDetail($id)
+    {
+
+        $data = array(
+            'title' => 'Blog Page',
+            'news' => News::where('id', $id)->first()
+        );
+
+        return view('home.blogDetail', $data);
     }
 
     public function tracking()
@@ -42,7 +56,7 @@ class HomeController extends Controller
             'title' => 'Tracking Page'
         );
 
-        return view('order.tracking', $data);
+        return view('home.tracking', $data);
     }
 
     public function contact()
@@ -51,7 +65,7 @@ class HomeController extends Controller
             'title' => 'Contact Page'
         );
 
-        return view('contact.contact', $data);
+        return view('home.contact', $data);
     }
 
     public function productDetail($id)
@@ -62,6 +76,6 @@ class HomeController extends Controller
             'product' => Product::where('id', $id)->first()
         );
 
-        return view('product.detail', $data);
+        return view('home.detail', $data);
     }
 }

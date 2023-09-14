@@ -5,18 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CartDetail extends Model
+class News extends Model
 {
     use HasFactory;
 
-    protected $table = 'cart_detail';
+    protected $table = 'news';
 
     protected $fillable = [
         'id',
-        'cart_id',
-        'product_id',
-        'qty',
-        'total_amount',
+        'title',
+        'short_description',
+        'description',
+        'image',
+        'author',
+        'category',
     ];
 
     const CREATED_AT = 'created_at';

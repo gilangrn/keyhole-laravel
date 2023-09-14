@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('delivery_type', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->bigInteger('shipping_cost')->nullable();
             $table->timestamps();

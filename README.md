@@ -74,10 +74,34 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 composer update
 ```
 
+> Untuk buat table migration
+
+```
+php artisan make:migration nama_table
+```
+
+> Untuk rollback / drop table 1 step
+
+```
+php artisan migrate:rollback
+```
+
+> Untuk rollback dan create dalam 1 command
+
+```
+php artisan migrate:refresh
+```
+
 > Untuk create table di db
 
 ```
 php artisan migrate
+```
+
+> Untuk seeder
+
+```
+php artisan db:seed --class=UserSeeder
 ```
 
 > Untuk akses folder storage image
@@ -95,5 +119,6 @@ php artisan serve
 > Untuk membuat model
 
 ```
-php artisan make:model Cart
+php artisan make:model Product
 ```
+

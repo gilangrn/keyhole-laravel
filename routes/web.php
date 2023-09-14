@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
@@ -69,6 +70,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/delivery/update/{id}', [DeliveryController::class, 'update'])->name('delivery.update')->middleware('accessLevel:admin');
     Route::get('/admin/delivery/delete/{id}', [DeliveryController::class, 'delete'])->name('delivery.delete')->middleware('accessLevel:admin');
 
+    Route::get('/admin/news', [NewsController::class, 'index'])->middleware('accessLevel:admin');
+    Route::post('/admin/news/add', [NewsController::class, 'add'])->name('news.add')->middleware('accessLevel:admin');
+    Route::post('/admin/news/update/{id}', [NewsController::class, 'update'])->name('news.update')->middleware('accessLevel:admin');
+    Route::get('/admin/news/delete/{id}', [NewsController::class, 'delete'])->name('news.delete')->middleware('accessLevel:admin');
+
     Route::get('/admin/user', [UserController::class, 'index'])->middleware('accessLevel:admin');
     Route::post('/admin/user/add', [UserController::class, 'add'])->name('user.add')->middleware('accessLevel:admin');
     Route::post('/admin/user/update/{id}', [UserController::class, 'update'])->name('user.update')->middleware('accessLevel:admin');
@@ -80,7 +86,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/product-detail/{id}', [HomeController::class, 'productDetail'])->name('product.detail');
+
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
+Route::get('/blog-detail/{id}', [HomeController::class, 'blogDetail'])->name('blog.detail');
+
 Route::get('/tracking', [HomeController::class, 'tracking'])->name('tracking');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-Route::get('/product-detail/{id}', [HomeController::class, 'productDetail'])->name('product.detail');

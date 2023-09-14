@@ -91,13 +91,13 @@
                     </li>
                     <li class="nav-label">Settings</li>
                     <li>
-                        <a href="/admin/category" aria-expanded="false">
-                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Category</span>
+                        <a href="/admin/product" aria-expanded="false">
+                            <i class="icon-menu menu-icon"></i><span class="nav-text">Product</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/product" aria-expanded="false">
-                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Product</span>
+                        <a href="/admin/category" aria-expanded="false">
+                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Category</span>
                         </a>
                     </li>
                     <li>
@@ -108,6 +108,11 @@
                     <li>
                         <a href="/admin/delivery" aria-expanded="false">
                             <i class="icon-badge menu-icon"></i><span class="nav-text">Delivery</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/news" aria-expanded="false">
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">News</span>
                         </a>
                     </li>
                     <li>
